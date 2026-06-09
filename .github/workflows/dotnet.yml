@@ -20,8 +20,11 @@ jobs:
       - name: Restore (solution)
         run: dotnet restore
 
-      - name: Build API project
-        run: dotnet build Buildberry.csproj --no-restore --configuration Release --verbosity minimal
+      - name: Diagnostic: dotnet info
+        run: dotnet --info
+
+      - name: Build API project (disable GenerateAssemblyInfo to avoid duplicate attributes)
+        run: dotnet build Buildberry.csproj /p:GenerateAssemblyInfo=false --no-restore --configuration Release --verbosity minimal
 
       - name: Build tests project
         run: dotnet build tests/Buildberry.Tests/Buildberry.Tests.csproj --no-restore --configuration Release --verbosity minimal
