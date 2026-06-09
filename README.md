@@ -66,3 +66,5 @@ Buildberry/
 - Authentication and authorization
 - Filtering and pagination
 - Caching layer
+
+*using neovim on blackberry key2
