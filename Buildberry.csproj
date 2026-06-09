@@ -4,8 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <!-- Disable auto-generation of assembly attributes to avoid duplicate attribute errors during test builds -->
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  <!-- Allow SDK to generate assembly info (default) -->
   </PropertyGroup>
 
   <ItemGroup>

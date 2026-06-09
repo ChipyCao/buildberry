@@ -17,11 +17,14 @@ jobs:
         with:
           dotnet-version: '9.0.x'
 
-      - name: Restore
+      - name: Restore (solution)
         run: dotnet restore
 
-      - name: Build
-        run: dotnet build --no-restore --configuration Release --verbosity minimal
+      - name: Build API project
+        run: dotnet build Buildberry.csproj --no-restore --configuration Release --verbosity minimal
 
-      - name: Test
-        run: dotnet test --no-build --verbosity normal
+      - name: Build tests project
+        run: dotnet build tests/Buildberry.Tests/Buildberry.Tests.csproj --no-restore --configuration Release --verbosity minimal
+
+      - name: Test (explicit project)
+        run: dotnet test tests/Buildberry.Tests/Buildberry.Tests.csproj --no-build --verbosity normal
