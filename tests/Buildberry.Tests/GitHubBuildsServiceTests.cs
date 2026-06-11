@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Buildberry.Models;
@@ -28,10 +29,10 @@ public class GitHubBuildsServiceTests
     public async Task GetBuildsAsync_ReturnsRuns_WhenApiReturnsRuns()
     {
         // Arrange
-        var json = "{ \"workflow_runs\": [ { \"name\": \"CI\", \"conclusion\": \"success\", \"updated_at\": \"2026-06-09T12:00:00Z\" } ] }";
+        var json = @"{ ""workflow_runs"": [ { ""name"": ""CI"", ""conclusion"": ""success"", ""updated_at"": ""2026-06-09T12:00:00Z"" } ] }";
         var response = new HttpResponseMessage(HttpStatusCode.OK)
         {
-            Content = new StringContent(json)
+            Content = new StringContent(json, Encoding.UTF8, "application/json")
         };
 
         var handler = new MockHttpMessageHandler(response);
@@ -54,10 +55,10 @@ public class GitHubBuildsServiceTests
     public async Task GetBuildsAsync_ReturnsEmpty_WhenNoRuns()
     {
         // Arrange
-        var json = "{ \"workflow_runs\": [] }";
+        var json = @"{ ""workflow_runs"": [] }";
         var response = new HttpResponseMessage(HttpStatusCode.OK)
         {
-            Content = new StringContent(json)
+            Content = new StringContent(json, Encoding.UTF8, "application/json")
         };
 
         var handler = new MockHttpMessageHandler(response);
